@@ -35,6 +35,11 @@ button:hover {
     background-color: #ff66b3; /* Darker pink button background on hover */
 }
 
+img{
+    max-width:100%;
+    width:100%;
+}
+
 video{
     display:block;
 }
