@@ -76,7 +76,7 @@ const scenes = {
         }
     },
     swipeRight: {
-        text: "You swipe right on the profile, and to your delight, it's a match! You start chatting and hit it off. Do you suggest meeting in person?",
+        text: "You swipe right, it's a match! You start chatting and hit it off. Do you suggest meeting in person?",
         options: {
             suggestMeeting: { text: "Yes", nextScene: "meetInPerson" },
             keepChatting: { text: "No, keep chatting", nextScene: "keepChatting" }
@@ -88,7 +88,7 @@ const scenes = {
         }
     },
     meetInPerson: {
-        text: "You suggest meeting in person, and your match agrees. You decide to meet on Christmas day. The date goes incredibly well, and you both feel a strong connection.",
+        text: "You decide to meet on Christmas day. The date goes incredibly well, and you both feel a strong connection.",
         options: {
             getTogether: { text: "Get together", nextScene: "getTogether" }
         }
@@ -100,7 +100,7 @@ const scenes = {
         }
     },
     getTogether: {
-        text: "After a few more dates, you officially become a couple. Fast forward to this year, and you're celebrating your second Valentine's Day together!",
+        text: "You officially become a couple. Fast forward to this year, and you're celebrating your second Valentine's Day together!",
         options: {
             
         }
