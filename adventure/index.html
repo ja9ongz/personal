@@ -7,7 +7,69 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet"> <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet"> 
+    <style>
+        /* Pink theme styles */
+        body{
+            font-family: "Gloria Hallelujah", cursive;
+            background-color: #FAE8E0; /* Light pink background */
+            font-size:24px;
+        }
+
+        h1{font-size:1.5em;}
+
+        .pink-theme {
+        
+            color: #ff4d8c; /* Purple text color */
+            padding: 20px; /* Add some padding */
+            border-radius: 10px; /* Rounded corners */
+            text-align: center; /* Center align text */
+        }
+
+        .options-wrap{
+            flex-direction: row;
+        }
+
+        /* Button styles */
+        button {
+            background-color: #ff4d8c; /* Light pink button background */
+            color: white; /* Purple button text color */
+            border: none; /* Remove button border */
+            padding: 10px 20px; /* Add padding */
+            margin: 0px 0px 20px; /* Add margin */
+            border-radius: 8px;
+            cursor: pointer; /* Add pointer cursor on hover */
+            font-size:20px;
+        }
+
+        button:hover {
+            background-color: #ff66b3; /* Darker pink button background on hover */
+        }
+
+        img{
+            max-width:100%;
+            width:100%;
+        }
+
+        video{
+            display:block;
+        }
+
+        /* Game content styles */
+        #game div{margin-bottom:40px;}
+        #game button{flex-direction: row;}
+
+        #game {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+
 </head>
 <body>
     <div id="game" class="pink-theme">
@@ -16,7 +78,7 @@
             <div class="options-wrap">
                 <button onclick="displayScene('start')"><i class="fa-solid fa-play" style="margin-right:8px;"></i> PLAY</button>
             </div>
-            <video width="100%" class="demoVideo" autoplay>
+            <video width="100%" class="demoVideo" autoplay muted>
                 <source src="ourstory.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -25,6 +87,120 @@
             
         </div>
     </div>
-    <script src="game.js"></script>
+    <script>
+        // Define the starting point of the game
+
+        // Function to display text and options to the player
+        function displayScene(scene) {
+            // Clear previous content
+            document.getElementById('game').innerHTML = "";
+            // Display scene description
+            let sceneText = scenes[scene].text;
+            let sceneDiv = document.createElement('div');
+            sceneDiv.textContent = sceneText;
+            document.getElementById('game').appendChild(sceneDiv);
+
+            
+            // Display options
+            let options = scenes[scene].options;
+            for (let option in options) {
+                let optionButton = document.createElement('button');
+                optionButton.textContent = options[option].text;
+                optionButton.addEventListener('click', function() {
+                    chooseOption(options[option].nextScene);
+                });
+
+                document.getElementById('game').appendChild(optionButton);
+            }
+
+            if(scene == 'swipeRight'){
+                var img = new Image();
+                img.src = 'swipe.jpg';
+                document.getElementById('game').appendChild(img);
+            }
+
+            if(scene == 'swipeLeft'){
+                var img = new Image();
+                img.src = 'missedout.gif';
+                document.getElementById('game').appendChild(img);
+            }
+
+            if(scene == 'keepChatting'){
+                var img = new Image();
+                img.src = 'awkward.png';
+                document.getElementById('game').appendChild(img);
+            }
+
+            if(scene == 'meetInPerson'){
+                var img = new Image();
+                img.src = 'connected.jpg';
+                document.getElementById('game').appendChild(img);
+            }
+
+            if (scene == 'getTogether'){
+                let videoplayer = document.createElement('video');
+                videoplayer.setAttribute("src","love.mp4");
+                videoplayer.setAttribute("type","video/mp4");
+                videoplayer.setAttribute("autoplay","autoplay");
+                videoplayer.setAttribute("muted","muted");
+                videoplayer.setAttribute("width","100%");
+
+                console.log(videoplayer);
+                document.getElementById('game').appendChild(videoplayer);
+            }
+        }
+
+        // Function to handle player's choice
+        function chooseOption(nextScene) {
+            currentScene = nextScene;
+            displayScene(currentScene);
+        }
+
+        // Define scenes and options
+        const scenes = {
+            start: {
+                text: "You're browsing through CMB and come across a profile that catches your eye. Do you swipe right?",
+                options: {
+                    yes: { text: "Yes", nextScene: "swipeRight" },
+                    no: { text: "No", nextScene: "swipeLeft" }
+                }
+            },
+            swipeRight: {
+                text: "You swipe right, it's a match! You start chatting and hit it off. Do you suggest meeting in person?",
+                options: {
+                    suggestMeeting: { text: "Yes", nextScene: "meetInPerson" },
+                    keepChatting: { text: "No, keep chatting", nextScene: "keepChatting" }
+                }
+            },
+            swipeLeft: {
+                text: "I see.......you wna swipe left!",
+                options: {
+                }
+            },
+            meetInPerson: {
+                text: "You decide to meet on Christmas day. The date goes incredibly well, and you both feel a strong connection.",
+                options: {
+                    getTogether: { text: "Get together", nextScene: "getTogether" }
+                }
+            },
+            keepChatting: {
+                text: "You continue chatting with your match for a while longer, getting to know each other better. Eventually, you suggest meeting in person.",
+                options: {
+                    suggestMeeting: { text: "Suggest meeting", nextScene: "meetInPerson" }
+                }
+            },
+            getTogether: {
+                text: "You officially become a couple. Fast forward to this year, and you're celebrating your second Valentine's Day together!",
+                options: {
+                    
+                }
+            }
+        };
+
+        // Start the game
+        //displayScene(currentScene);
+
+
+    </script>
 </body>
 </html>
