@@ -1,0 +1,53 @@
+/* Pink theme styles */
+body{
+    font-family: "Gloria Hallelujah", cursive;
+    background-color: #FAE8E0; /* Light pink background */
+    font-size:24px;
+}
+
+h1{font-size:1.5em;}
+
+.pink-theme {
+   
+    color: #ff4d8c; /* Purple text color */
+    padding: 20px; /* Add some padding */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center; /* Center align text */
+}
+
+.options-wrap{
+    flex-direction: row;
+}
+
+/* Button styles */
+button {
+    background-color: #ff4d8c; /* Light pink button background */
+    color: white; /* Purple button text color */
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Add padding */
+    margin: 0px 0px 20px; /* Add margin */
+    border-radius: 8px;
+    cursor: pointer; /* Add pointer cursor on hover */
+    font-size:20px;
+}
+
+button:hover {
+    background-color: #ff66b3; /* Darker pink button background on hover */
+}
+
+video{
+    display:block;
+}
+
+/* Game content styles */
+#game div{margin-bottom:40px;}
+#game button{flex-direction: row;}
+
+#game {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
